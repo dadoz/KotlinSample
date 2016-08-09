@@ -5,17 +5,23 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.example.davide.kotlinsample.R
 
 class LoginFragment: Fragment() {
     private val TAG: String = "LoginFragment"
+//    private var mainView: View? = null
+    private var signupButton: View? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super<Fragment>.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater?.inflate(R.layout.login_layout_fragment, container, false)
+        val mainView: View? = inflater?.inflate(R.layout.fragment_login_layout, container, false)
+        onBindViewManual(mainView)
+        return mainView
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
@@ -23,17 +29,22 @@ class LoginFragment: Fragment() {
         onInitView()
     }
 
-
+    /**
+     *
+     */
+    private fun onBindViewManual(mainView: View?) {
+        signupButton = mainView?.findViewById(R.id.signupButtonId)
+    }
 
     /**
      * init view fragment
      */
     fun onInitView() {
-
         Log.e(TAG, "init login fragment")
-//        ViewClass(context, null).signupButton.setOnClickListener {
-//            Toast.makeText(context, "hey login", Toast.LENGTH_SHORT).show()
-//        }
+        signupButton?.setOnClickListener {
+            Log.e(TAG, "Hey click")
+            Toast.makeText(context, "hey login", Toast.LENGTH_SHORT).show()
+        }
     }
 
 }
