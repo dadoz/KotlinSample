@@ -19,7 +19,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="120dip"
         android:backgroundTint="@color/material_white"
-        android:textColor="@color/material_indigo600"
         android:text="SIGN UP"/>
     <include layout="@layout/card_login_layout"/>
 </RelativeLayout>

@@ -1,16 +1,27 @@
 package com.example.davide.kotlinsample.fragments
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.example.davide.kotlinsample.R
+import com.example.davide.kotlinsample.adapter.BeerRecyclerAdapter
+import com.example.davide.kotlinsample.models.Beer
+import com.google.gson.Gson
+import com.google.gson.JsonArray
+import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_user.*
+import kotlinx.android.synthetic.main.fragment_user.*
+import java.io.FileDescriptor
+import java.util.*
 
 class UserFragment : Fragment() {
+
     private val TAG: String = "UserFragment"
+    private var beerList: MutableList<Beer>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super<Fragment>.onCreate(savedInstanceState)
@@ -23,7 +34,13 @@ class UserFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super<Fragment>.onViewCreated(view, savedInstanceState)
+        parseDataFromAssets()
         onInitView()
+    }
+
+    private fun parseDataFromAssets() {
+        beerList = Gson().fromJson<MutableList<Beer>>(activity.assets.open("data.json").reader(),
+                object : TypeToken<MutableList<Beer>>() {}.type)
     }
 
     /**
@@ -31,12 +48,17 @@ class UserFragment : Fragment() {
      */
     fun onInitView() {
         Log.e(TAG, "init login fragment")
-//        https//6bfed912ac7945c7ae2189b73586d201@punkapi.com/api/v1/beers
+        initRecyclerView()
+    }
 
-//        signupButton?.setOnClickListener {
-//            Log.e(TAG, "Hey click")
-//            Toast.makeText(context, "hey login", Toast.LENGTH_SHORT).show()
-//        }
+    /**
+     *
+     */
+    private fun initRecyclerView() {
+        userBeerRecyclerId.layoutManager = LinearLayoutManager(context)
+        userBeerRecyclerId.adapter = BeerRecyclerAdapter(beerList) {
+            Toast.makeText(context, "hey this is awesome", Toast.LENGTH_SHORT).show()
+        }
     }
 
 }
