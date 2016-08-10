@@ -20,7 +20,7 @@
                     android:minWidth="200dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="username"/>
+                    android:hint="e-mail"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -35,23 +35,16 @@
                     android:hint="password"/>
 
             </android.support.design.widget.TextInputLayout>
-            <!--<Button-->
-                <!--android:layout_below="@id/passwordTextInputLayoutId"-->
-                <!--android:layout_alignParentRight="true"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:backgroundTint="@color/material_indigo600"-->
-                <!--android:textColor="@color/material_white"-->
-                <!--android:text="SAVE"/>-->
-            <TextView
+            <Button
                 android:layout_below="@id/passwordTextInputLayoutId"
-                android:layout_alignParentRight="true"
+                android:layout_centerHorizontal="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dip"
-                android:textSize="22sp"
-                android:textColor="@color/colorAccent"
-                android:text="SAVE"/>
+                android:minWidth="150dp"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:backgroundTint="@color/material_indigo600"
+                android:textColor="@color/material_white"
+                android:text="SUBMIT"/>
 
 
         </RelativeLayout>
