@@ -31,6 +31,8 @@ class UserFragment : Fragment() {
      */
     fun onInitView() {
         Log.e(TAG, "init login fragment")
+//        https//6bfed912ac7945c7ae2189b73586d201@punkapi.com/api/v1/beers
+
 //        signupButton?.setOnClickListener {
 //            Log.e(TAG, "Hey click")
 //            Toast.makeText(context, "hey login", Toast.LENGTH_SHORT).show()

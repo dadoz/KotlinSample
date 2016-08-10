@@ -5,4 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.davide.kotlinsample.MainActivity">
+    <include layout="@layout/card_user_layout"
+        android:id="@+id/cardUserLayoutId"/>
+    <ListView
+        android:layout_below="@id/cardUserLayoutId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/material_blue900"/>
  </RelativeLayout>

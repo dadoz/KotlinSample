@@ -20,12 +20,23 @@
                     android:minWidth="200dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:hint="Username"/>
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/emailTextInputLayoutId"
+                android:layout_below="@id/usernameTextInputLayoutId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <android.support.design.widget.TextInputEditText
+                    android:minWidth="200dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:hint="e-mail"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/passwordTextInputLayoutId"
-                android:layout_below="@id/usernameTextInputLayoutId"
+                android:layout_below="@id/emailTextInputLayoutId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
