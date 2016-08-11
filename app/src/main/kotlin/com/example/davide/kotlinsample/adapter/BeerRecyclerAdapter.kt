@@ -31,7 +31,6 @@ class BeerRecyclerAdapter(val list: MutableList<Beer>?, val itemClick: (Beer?) -
                 itemView.beerDescriptionId.text = this?.contributed_by
                 itemView.setOnClickListener { itemClick.invoke(this) }
             }
-
         }
     }
 }

@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.example.davide.kotlinsample.R
 import com.example.davide.kotlinsample.adapter.BeerRecyclerAdapter
+import com.example.davide.kotlinsample.builder.AnimatorBuilder
 import com.example.davide.kotlinsample.models.Beer
 import com.google.gson.Gson
 import com.google.gson.JsonArray
@@ -16,6 +17,7 @@ import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_user.*
 import kotlinx.android.synthetic.main.fragment_user.*
 import java.io.FileDescriptor
+import java.lang.ref.WeakReference
 import java.util.*
 
 class UserFragment : Fragment() {

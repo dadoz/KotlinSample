@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cardLoginLayoutId"
     android:orientation="vertical"
+    android:background="@color/material_orange600"
+    android:layout_centerInParent="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/cardLoginCardviewLayoutId"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <RelativeLayout
             android:layout_width="match_parent"
@@ -13,6 +19,7 @@
             android:padding="@dimen/activity_horizontal_margin">
 
             <android.support.design.widget.TextInputLayout
+                android:visibility="gone"
                 android:id="@+id/usernameTextInputLayoutId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
@@ -23,6 +30,7 @@
                     android:hint="Username"/>
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
+                android:visibility="gone"
                 android:id="@+id/emailTextInputLayoutId"
                 android:layout_below="@id/usernameTextInputLayoutId"
                 android:layout_width="wrap_content"
@@ -35,6 +43,7 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:visibility="gone"
                 android:id="@+id/passwordTextInputLayoutId"
                 android:layout_below="@id/emailTextInputLayoutId"
                 android:layout_width="wrap_content"
@@ -47,6 +56,7 @@
 
             </android.support.design.widget.TextInputLayout>
             <Button
+                android:visibility="gone"
                 android:id="@+id/submitButtonId"
                 android:layout_below="@id/passwordTextInputLayoutId"
                 android:layout_centerHorizontal="true"
