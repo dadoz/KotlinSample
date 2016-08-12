@@ -1,6 +1,7 @@
 package com.example.davide.kotlinsample.fragments
 import android.animation.Animator
 import android.animation.AnimatorSet
+import android.animation.ValueAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -20,7 +21,7 @@ import kotlinx.android.synthetic.main.fragment_login_layout.*
 import java.lang.ref.WeakReference
 
 
-class LoginFragment: Fragment(), Animator.AnimatorListener {
+class LoginFragment: Fragment(), Animator.AnimatorListener, ValueAnimator.AnimatorUpdateListener {
     private val TAG: String = "LoginFragment"
 
 
@@ -76,21 +77,16 @@ class LoginFragment: Fragment(), Animator.AnimatorListener {
      *
      */
     private fun animateView() {
-        val animatorSet: AnimatorSet = AnimatorSet()
-        val animatorY: Animator = AnimatorBuilder(WeakReference(context)).scaleYAnimator(cardLoginLayoutId, 28f)
-        val animatorX: Animator = AnimatorBuilder(WeakReference(context)).scaleXAnimator(cardLoginLayoutId, 36f)
-        animatorSet.playTogether(animatorX, animatorY)
-        animatorSet.start()
+        val valueAnimator = AnimatorBuilder(WeakReference(context)).scaleAnimator(800)
+        valueAnimator.addUpdateListener(this)
+        valueAnimator.start()
     }
 
     /**
      *
      */
     private fun initCardLogin() {
-        setViewLayoutParams(cardLoginLayoutId, 20, 20)
-        cardLoginCardviewLayoutId.addOnLayoutChangeListener { view, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom ->
-            Log.e(TAG, "resizing$left - $top - $right - $bottom - $oldLeft - $oldTop - $oldRight - $oldBottom")
-        }
+        setViewLayoutParams(cardLoginCardviewLayoutId, 1, 1)
     }
 
     /**
@@ -99,6 +95,22 @@ class LoginFragment: Fragment(), Animator.AnimatorListener {
     private fun setViewLayoutParams(view: View, height: Int, width: Int) {
         view.layoutParams.height = height
         view.layoutParams.width = width
+    }
+
+    override fun onAnimationUpdate(valueAnimator: ValueAnimator?) {
+        val max: Int = 10
+        var oldAnimVal: Float = valueAnimator?.animatedValue as Float
+        if (oldAnimVal == 0f) { oldAnimVal = 20f }
+        val deltaAnimVal = oldAnimVal - cardLoginCardviewLayoutId.layoutParams.height
+        Log.e(TAG, "updateListener - ${valueAnimator?.animatedValue}")
+        for (i in 1..max) {
+//            Log.e(TAG, "updateListener - ${valueAnimator?.animatedValue}")
+//            Log.e(TAG, "**** - ${oldAnimVal.plus(deltaAnimVal.div(max).times(i))}")
+            cardLoginCardviewLayoutId.layoutParams.height = oldAnimVal.toInt()//oldAnimVal.plus(deltaAnimVal.div(max).times(i))
+            cardLoginCardviewLayoutId.layoutParams.width = oldAnimVal.toInt()//oldAnimVal.plus(deltaAnimVal.div(max).times(i))
+            cardLoginCardviewLayoutId.requestLayout()
+            cardLoginContentLayoutId.requestLayout()
+        }
     }
 
 }

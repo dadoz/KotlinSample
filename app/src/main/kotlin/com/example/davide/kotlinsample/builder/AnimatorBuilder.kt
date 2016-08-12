@@ -2,8 +2,12 @@ package com.example.davide.kotlinsample.builder
 
 import android.animation.Animator
 import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.content.Context
+import android.util.Log
 import android.view.View
+import android.view.animation.AccelerateInterpolator
+import android.view.animation.LinearInterpolator
 import java.lang.ref.WeakReference
 
 class AnimatorBuilder(context: WeakReference<Context>) {
@@ -15,7 +19,7 @@ class AnimatorBuilder(context: WeakReference<Context>) {
 
     init {
         duration = context.get().resources
-                .getInteger(android.R.integer.config_mediumAnimTime).toLong()
+                .getInteger(android.R.integer.config_shortAnimTime).toLong()
     }
 
     /**
@@ -39,8 +43,8 @@ class AnimatorBuilder(context: WeakReference<Context>) {
     /**
      *
      */
-    fun scaleYAnimator(view: View?, scaleValue: Float): Animator {
-        val animator: Animator = ObjectAnimator.ofFloat(view, SCALE_Y, scaleValue)
+    fun scaleYAnimator(view: View?, scaleValue: Float): ValueAnimator {
+        val animator: ValueAnimator = ObjectAnimator.ofFloat(view, SCALE_Y, scaleValue)
         animator.duration = duration
         view?.pivotY = 0f
         return animator
@@ -49,10 +53,20 @@ class AnimatorBuilder(context: WeakReference<Context>) {
     /**
      *
      */
-    fun scaleXAnimator(view: View?, scaleValue: Float): Animator {
-        val animator: Animator = ObjectAnimator.ofFloat(view, SCALE_X, scaleValue)
+    fun scaleXAnimator(view: View?, scaleValue: Float): ValueAnimator {
+        val animator: ValueAnimator = ObjectAnimator.ofFloat(view, SCALE_X, scaleValue)
         animator.duration = duration
         view?.pivotY = 0f
+        return animator
+    }
+
+    /**
+     *
+     */
+    fun scaleAnimator(finalValue: Int): ValueAnimator {
+        val animator: ValueAnimator = ObjectAnimator.ofFloat(0f, 1f)
+        animator.duration = duration
+        animator.interpolator = AccelerateInterpolator()
         return animator
     }
 }
