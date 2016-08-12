@@ -98,20 +98,28 @@ class LoginFragment: Fragment(), Animator.AnimatorListener, ValueAnimator.Animat
     }
 
     override fun onAnimationUpdate(valueAnimator: ValueAnimator?) {
-        val max: Int = 10
-        var oldAnimVal: Float = valueAnimator?.animatedValue as Float
-        if (oldAnimVal == 0f) { oldAnimVal = 20f }
-        val deltaAnimVal = oldAnimVal - cardLoginCardviewLayoutId.layoutParams.height
-        Log.e(TAG, "updateListener - ${valueAnimator?.animatedValue}")
-        for (i in 1..max) {
+        var width: Int = 800
+        var height: Int= 600
+        cardLoginCardviewLayoutId.layoutParams.height = (valueAnimator?.animatedValue as Float).times(height).toInt()
+        cardLoginCardviewLayoutId.layoutParams.width = (valueAnimator?.animatedValue as Float).times(width).toInt()
+        cardLoginCardviewLayoutId.requestLayout()
+        cardLoginContentLayoutId.requestLayout()
+
+    }
+//    override fun onAnimationUpdate(valueAnimator: ValueAnimator?) {
+//        val max: Int = 10
+//        var oldAnimVal: Float = valueAnimator?.animatedValue as Float
+//        val deltaAnimVal = oldAnimVal - cardLoginCardviewLayoutId.layoutParams.height
+//        Log.e(TAG, "updateListener - ${valueAnimator?.animatedValue}")
+//        for (i in 1..max) {
 //            Log.e(TAG, "updateListener - ${valueAnimator?.animatedValue}")
 //            Log.e(TAG, "**** - ${oldAnimVal.plus(deltaAnimVal.div(max).times(i))}")
-            cardLoginCardviewLayoutId.layoutParams.height = oldAnimVal.toInt()//oldAnimVal.plus(deltaAnimVal.div(max).times(i))
-            cardLoginCardviewLayoutId.layoutParams.width = oldAnimVal.toInt()//oldAnimVal.plus(deltaAnimVal.div(max).times(i))
-            cardLoginCardviewLayoutId.requestLayout()
-            cardLoginContentLayoutId.requestLayout()
-        }
-    }
+//            cardLoginCardviewLayoutId.layoutParams.height = oldAnimVal.toInt()//oldAnimVal.plus(deltaAnimVal.div(max).times(i))
+//            cardLoginCardviewLayoutId.layoutParams.width = oldAnimVal.toInt()//oldAnimVal.plus(deltaAnimVal.div(max).times(i))
+//            cardLoginCardviewLayoutId.requestLayout()
+//            cardLoginContentLayoutId.requestLayout()
+//        }
+//    }
 
 }
 
