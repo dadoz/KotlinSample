@@ -9,6 +9,7 @@ import android.support.v7.widget.CardView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.widget.RelativeLayout
@@ -63,6 +64,7 @@ class LoginFragment: Fragment(), Animator.AnimatorListener, ValueAnimator.Animat
         signupButtonId.setOnClickListener {
             Log.e(TAG, "singupButton")
             Toast.makeText(context, "hey login", Toast.LENGTH_SHORT).show()
+            signupButtonId.visibility = GONE
             animateView()
         }
 
@@ -77,7 +79,7 @@ class LoginFragment: Fragment(), Animator.AnimatorListener, ValueAnimator.Animat
      *
      */
     private fun animateView() {
-        val valueAnimator = AnimatorBuilder(WeakReference(context)).scaleAnimator(800)
+        val valueAnimator = AnimatorBuilder(WeakReference(context)).scaleAnimator(1f)
         valueAnimator.addUpdateListener(this)
         valueAnimator.start()
     }
@@ -98,8 +100,8 @@ class LoginFragment: Fragment(), Animator.AnimatorListener, ValueAnimator.Animat
     }
 
     override fun onAnimationUpdate(valueAnimator: ValueAnimator?) {
-        var width: Int = 800
-        var height: Int= 600
+        var width: Int = 1000
+        var height: Int= 1100
         cardLoginCardviewLayoutId.layoutParams.height = (valueAnimator?.animatedValue as Float).times(height).toInt()
         cardLoginCardviewLayoutId.layoutParams.width = (valueAnimator?.animatedValue as Float).times(width).toInt()
         cardLoginCardviewLayoutId.requestLayout()

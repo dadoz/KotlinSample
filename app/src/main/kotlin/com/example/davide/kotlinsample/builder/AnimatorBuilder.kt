@@ -63,8 +63,8 @@ class AnimatorBuilder(context: WeakReference<Context>) {
     /**
      *
      */
-    fun scaleAnimator(finalValue: Int): ValueAnimator {
-        val animator: ValueAnimator = ObjectAnimator.ofFloat(0f, 1f)
+    fun scaleAnimator(finalValue: Float): ValueAnimator {
+        val animator: ValueAnimator = ObjectAnimator.ofFloat(0f, finalValue)
         animator.duration = duration
         animator.interpolator = AccelerateInterpolator()
         return animator
